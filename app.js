@@ -5,13 +5,15 @@ var express = require('express');
 var swig = require('swig');
 //加载数据库
 var mongoose = require('mongoose');
-
+//加载bodyparser，用来处理post提交过来的数据
+var bodyParser =  require('body-parser');
 //http.createServer
 var app = express();
 
 //设置静态文件托管（静态处理）
 app.use('/public',express.static(__dirname+'/public'));
-
+//bodyParser设置
+app.use(bodyParser.urlencoded({extended:true}));
 //设置模版
 app.engine('html',swig.renderFile);
 app.set('views','./view');
@@ -39,3 +41,4 @@ mongoose.connect('mongodb://localhost:27018/blog',function (err) {
   }
 });
 
+// app.listen(7070);
