@@ -9,11 +9,26 @@ var mongoose = require('mongoose');
 var bodyParser =  require('body-parser');
 //http.createServer
 var app = express();
+//加载cookies模块
+var cookies = require('cookies')
 
 //设置静态文件托管（静态处理）
 app.use('/public',express.static(__dirname+'/public'));
 //bodyParser设置
 app.use(bodyParser.urlencoded({extended:true}));
+//cookies
+app.use(function (req,res,next) {
+  req.cookies = new cookies(req,res);
+  if(req.cookies.get('userInfo')){
+    //如果携带有cookie信息，解析用户登录的cookie信息，并保存在req
+    try {
+      req.userInfo = JSON.parse(req.cookies.get('userInfo'));
+    }catch (e){
+
+    }
+  }
+  next();
+})
 //设置模版
 app.engine('html',swig.renderFile);
 app.set('views','./view');

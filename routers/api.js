@@ -104,8 +104,20 @@ router.post('/user/login',function (req,res) {
             _id:userInfo._id,
             username:username,
         }
+        //服务器会接收到cookies信息
+        req.cookies.set('userInfo',JSON.stringify({
+          _id:userInfo._id,
+          username:username,
+        }));
         res.json(responseData);
     })
+});
 
-})
+router.get('/user/logout',function (req,res) {
+  req.cookies.set('userInfo',null);
+  responseData.message="退出成功";
+  res.json(responseData)
+});
+
+
 module.exports = router;

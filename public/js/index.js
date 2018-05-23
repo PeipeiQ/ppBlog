@@ -65,9 +65,9 @@ $(function() {
                 console.log(result);
                 if (!result.code) {
                     //登录成功
-                    //window.location.reload();
-                    $loginBox.hide();
-                    $userInfo.show();
+                    window.location.reload();
+                    // $loginBox.hide();
+                    // $userInfo.show();
                 }
             }
         })
