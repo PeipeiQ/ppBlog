@@ -28,7 +28,7 @@ router.get('/user', function (req, res, next) {
 *  1、用户名是否已经被注册
 */
 router.post('/user/register', function (req, res, next) {
-    console.log(req.body);
+
     //对数据进行验证
     var username = req.body.username;
     var password = req.body.password;
@@ -56,7 +56,7 @@ router.post('/user/register', function (req, res, next) {
     User.findOne({
         username: username
     }).then(function (userInfo) {
-        console.log(userInfo)
+
 
         if (userInfo) {
             responseData.code = 4;
@@ -71,7 +71,7 @@ router.post('/user/register', function (req, res, next) {
         });
         return user.save()
     }).then(function (newUserInfo) {
-        console.log(newUserInfo)
+
         responseData.message = '注册成功';
         res.json(responseData);
     });
@@ -114,7 +114,7 @@ router.post('/user/login', function (req, res) {
 });
 
 router.get('/user/logout', function (req, res) {
-    console.log(req.query)
+
     req.cookies.set('userInfo', null);
     responseData.message = "退出成功";
     res.json(responseData)
