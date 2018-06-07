@@ -48,6 +48,7 @@ app.use(function (req, res, next) {
       //从数据库查询
       User.findById(req.userInfo._id).then(function (userInfo) {
         req.userInfo.isAdmin = Boolean(userInfo.isAdmin);
+        //req.userInfo.isAdmin = false;
         next();
       })
     } catch (e) {
@@ -77,12 +78,13 @@ app.use('/', require('./routers/main'));     //前台
 app.use('/api', require('./routers/api'));
 app.use('/admin', require('./routers/admin'));   //后台
 
-mongoose.connect('mongodb://111.230.67.220:27018', function (err) {
+
+mongoose.connect('mongodb://111.230.67.220:27018/blog', function (err) {
   if (err) {
     console.log('数据库连接失败')
   } else {
     console.log('数据库连接成功')
-    app.listen(7070);
+    app.listen(7071);
   }
 });
 

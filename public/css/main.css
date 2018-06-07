@@ -259,13 +259,17 @@ main .mainLeft .messageBox p {
   margin: 0px;
 }
 main .mainRight {
-  width: 360px;
+  width: 100%;
   float: right;
+
 }
 main .mainRight .rightBox {
   background: #fff;
   padding: 16px 30px;
   margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 main .mainRight .rightBox .title {
   border-bottom: 1px solid #ebebeb;
@@ -278,7 +282,7 @@ main .mainRight .rightBox .title span {
   height: 36px;
   line-height: 36px;
   border-bottom: 1px solid #e67e22;
-  padding: 0px 20px 0px 0px;
+  /*padding: 0px 20px 0px 0px;*/
 }
 main .mainRight .rightBox button {
   background: #e67e22;
