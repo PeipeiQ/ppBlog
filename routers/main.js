@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Category = require('../models/Category');
 var Content = require('../models/Contents');
+var User = require('../models/User')
 
 var data;
 var response;
@@ -24,6 +25,8 @@ router.use(function (req, res, next) {
 });
 
 router.get('/', function (req, res, next) {
+
+
   data.userInfo = req.userInfo;
   data.page = Number(req.query.page || 1);
   data.limit = 3;
@@ -96,6 +99,25 @@ router.get('/view', function (req, res) {
 
     res.render('main/view', data);
   })
+})
+
+router.get('/addAdmin', function (req, res) {
+
+    User.findOne({
+      username:'Admin'
+    }).then(function (user) {
+      if(!user){
+        var user = new User({
+          username: 'Admin',
+          password: 'Admin123',
+          isAdmin:true
+        });
+        return user.save()
+      }
+    }).then(function (newUser) {
+      res.send('增加管理员成功')
+    })
+
 })
 
 
