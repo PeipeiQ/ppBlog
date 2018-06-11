@@ -59,7 +59,7 @@ router.get('/', function (req, res, next) {
 router.get('/getContent', function (req, res, next) {
   data.userInfo = req.userInfo;
   data.page = Number(req.query.page || 1);
-  data.limit = 3;
+  data.limit = 10;
   data.pages = 0;
   data.category = req.query.category || '';
   data.count = 0;
