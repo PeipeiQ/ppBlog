@@ -17,8 +17,8 @@ var User = require('./models/User')
 //设置静态文件托管（静态处理）
 app.use('/public', express.static(__dirname + '/public'));
 //bodyParser设置
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit:'50mb'}));
+app.use(bodyParser.urlencoded({limit:'50mb',extended:true}));
 
 //设置服务器跨域权限
 // app.use(function (req, res, next) {

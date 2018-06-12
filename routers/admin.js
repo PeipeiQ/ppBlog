@@ -260,17 +260,21 @@ router.get('/content/add', function (req, res) {
 
 router.post('/content/add', function (req, res) {
   if (req.body.category == '') {
-    res.render('admin/error', {
+    var response = {
       userInfo: req.userInfo,
-      message: '内容分类不能为空'
-    })
+      message: '内容分类不能为空',
+      code:1
+    }
+    res.json(response)
     return;
   }
   if (req.body.title == '') {
-    res.render('admin/error', {
+    var response = {
       userInfo: req.userInfo,
-      message: '内容标题不能为空'
-    })
+      message: '标题不能为空',
+      code:1
+    }
+    res.json(response)
     return;
   }
   //保存数据到数据库
@@ -281,11 +285,17 @@ router.post('/content/add', function (req, res) {
     content: req.body.content,
     user: req.userInfo._id.toString()
   }).save().then(function (rs) {
-    res.render('admin/success', {
+    // res.render('admin/success', {
+    //   userInfo: req.userInfo,
+    //   message: '内容保存成功',
+    //   url: '/admin/content'
+    // })
+    var response = {
       userInfo: req.userInfo,
       message: '内容保存成功',
-      url: '/admin/content'
-    })
+      code:0
+    }
+    res.json(response)
   })
 });
 
@@ -320,17 +330,21 @@ router.get('/content/edit', function (req, res) {
 router.post('/content/edit', function (req, res) {
   var id = req.query.id || '';
   if (req.body.category == '') {
-    res.render('admin/error', {
+    var response = {
       userInfo: req.userInfo,
-      message: '内容分类不能为空'
-    })
+      message: '内容分类不能为空',
+      code:1
+    }
+    res.json(response)
     return;
   }
   if (req.body.title == '') {
-    res.render('admin/error', {
+    var response = {
       userInfo: req.userInfo,
-      message: '内容标题不能为空'
-    })
+      message: '标题不能为空',
+      code:1
+    }
+    res.json(response)
     return;
   }
 
@@ -342,11 +356,17 @@ router.post('/content/edit', function (req, res) {
     description: req.body.description,
     content: req.body.content
   }).then(function () {
-    res.render('admin/success', {
+    // res.render('admin/success', {
+    //   userInfo: req.userInfo,
+    //   message: '内容保存成功',
+    //   url: '/admin/content'
+    // })
+    var response = {
       userInfo: req.userInfo,
       message: '内容保存成功',
-      url: '/admin/content'
-    })
+      code:0
+    }
+    res.json(response)
   })
 });
 

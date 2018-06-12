@@ -14,11 +14,11 @@
         <label for="title">分类：</label>
         <select name="category" id="category" class="form-control">
             {%for category in categories%}
-                {%if content.category._id.toString() == category._id.toString()%}
-                    <option value="{{category.id}}" selected>{{category.name}}</option>
-                {%else%}
-                    <option value="{{category.id}}">{{category.name}}</option>
-                {%endif%}
+            {%if content.category._id.toString() == category._id.toString()%}
+            <option value="{{category.id}}" selected>{{category.name}}</option>
+            {%else%}
+            <option value="{{category.id}}">{{category.name}}</option>
+            {%endif%}
             {%endfor%}
         </select>
     </div>
@@ -29,16 +29,16 @@
     </div>
 
     <div class="form-group">
-        <label for="description">简介：</label>
-        <textarea name="description" id="description" class="form-control" rows="5" placeholder="请输入内容简介">{{content.description}}</textarea>
+        <label for="title">简介：</label>
+        <input  id="edit_description" class="summernote" value="{{content.description}}">
     </div>
 
     <div class="form-group">
-        <label for="content">内容：</label>
-        <textarea name="content" id="content" class="form-control" rows="10" placeholder="请输入内容">{{content.content}}</textarea>
+        <label for="title">内容：</label>
+        <input  id="edit_content" class="summernote" value="{{content.content}}">
     </div>
 
-    <button type="submit" class="btn btn-default">提交</button>
+    <div class="btn btn-default" id="edit_submit">提交</div>
 </form>
-
+<script src="/public/js/changeText.js"></script>
 {% endblock %}
