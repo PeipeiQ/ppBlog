@@ -179,5 +179,24 @@ router.post('/leaveMsg',function (req,res) {
   })
 })
 
+//获取文章内容
+router.get('/getcontent',function (req,res) {
+  var contentId = req.query.id;
+  Content.findOne({
+    _id:contentId
+  }).then(function (content) {
+    responseData.code = 0;
+    responseData.message='成功';
+    responseData.data = content;
+    res.json(responseData)
+  }).catch(function (reason) {
+    responseData.code = 100;
+    responseData.message = '文章不存在';
+    res.json(responseData)
+  })
+
+
+})
+
 
 module.exports = router;
