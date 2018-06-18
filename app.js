@@ -84,7 +84,7 @@ mongoose.connect('mongodb://111.230.67.220:27018/blog', function (err) {
     console.log('数据库连接失败')
   } else {
     console.log('数据库连接成功')
-    app.listen(7071);
+    app.listen(7070);
   }
 });
 
