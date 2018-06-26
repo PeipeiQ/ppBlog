@@ -180,6 +180,19 @@ router.post('/leaveMsg', function (req, res) {
     })
 })
 
+//获取全部留言
+router.get('/getMsg',function (req,res) {
+    Message.find().sort({_id: -1}).then(function (msg) {
+        if(msg){
+            responseData.code = 0;
+            responseData.message = '获取成功';
+            responseData.data = msg;
+            res.json(responseData)
+        }
+    })
+})
+
+
 //获取文章内容
 router.get('/getcontent', function (req, res) {
     var contentId = req.query.id;
