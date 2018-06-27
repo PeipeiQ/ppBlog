@@ -79,7 +79,7 @@ app.use('/api', require('./routers/api'));
 app.use('/admin', require('./routers/admin'));   //后台
 
 
-mongoose.connect('mongodb://111.230.67.220:27018/blog', function (err) {
+mongoose.connect('mongodb://name:password@111.230.67.220:27017/blog', function (err) {
   if (err) {
     console.log('数据库连接失败')
   } else {
